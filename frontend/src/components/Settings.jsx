@@ -46,7 +46,7 @@ const Settings = () => {
       }
 
       setProfile({
-        uid: user.uid,                // ✅ FIREBASE UID
+        uid: user.uid, // ✅ FIREBASE UID
         fullName: user.displayName || "",
         email: user.email || "",
       });
@@ -72,7 +72,7 @@ const Settings = () => {
 
     setSaving(true);
 
-    await fetch("http://localhost:5000/api/profile", {
+    await fetch("http://localhost:5000/api/user/profile", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +128,6 @@ const Settings = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] px-4 py-10 flex justify-center">
       <div className="w-full max-w-4xl bg-white rounded-3xl shadow-sm p-6 sm:p-10">
-
         <h1 className="text-3xl font-bold mb-8">
           Settings <span className="text-[#a7c7e7]">Profile</span>
         </h1>
@@ -146,13 +145,12 @@ const Settings = () => {
         <input
           value={profile.fullName}
           disabled={!editing}
-          onChange={(e) =>
-            setProfile({ ...profile, fullName: e.target.value })
-          }
-          className={`w-full mb-4 px-4 py-3 rounded-xl ${editing
-            ? "border focus:ring-2 focus:ring-[#a7c7e7] outline-none"
-            : "bg-[#f2f6fb]"
-            }`}
+          onChange={(e) => setProfile({ ...profile, fullName: e.target.value })}
+          className={`w-full mb-4 px-4 py-3 rounded-xl ${
+            editing
+              ? "border focus:ring-2 focus:ring-[#a7c7e7] outline-none"
+              : "bg-[#f2f6fb]"
+          }`}
         />
 
         {/* EMAIL */}
@@ -160,13 +158,12 @@ const Settings = () => {
         <input
           value={profile.email}
           disabled={!editing}
-          onChange={(e) =>
-            setProfile({ ...profile, email: e.target.value })
-          }
-          className={`w-full mb-4 px-4 py-3 rounded-xl ${editing
-            ? "border focus:ring-2 focus:ring-[#a7c7e7] outline-none"
-            : "bg-[#f2f6fb]"
-            }`}
+          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+          className={`w-full mb-4 px-4 py-3 rounded-xl ${
+            editing
+              ? "border focus:ring-2 focus:ring-[#a7c7e7] outline-none"
+              : "bg-[#f2f6fb]"
+          }`}
         />
 
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}

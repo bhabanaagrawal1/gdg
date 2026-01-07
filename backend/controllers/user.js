@@ -115,7 +115,7 @@ export const addFriends = async (req, res) => {
     );
 
     // 6️⃣ Detect invalid / non-existing UIDs
-    const invalidIds = friends.filter((fuid) => !foundUids.has(fuid));
+    const invalidIds = friends.filter((fuid) => !existingUids.has(fuid)); //change 1
 
     return res.status(200).json({
       message: "Friends added successfully",

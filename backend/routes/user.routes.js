@@ -13,7 +13,7 @@ import { decodeToken } from "../middleware/auth.js";
 const router = express.Router();
 
 router.post("/user", decodeToken, userCreate);
-router.patch("/user/addfriends", decodeToken, addFriends);
+router.patch("/addfriends", decodeToken, addFriends);
 router.get("/safeScore", decodeToken, scoreCalculator);
 router.post("/report", decodeToken, report);
 router.get("/reports", getReports); // Public or protected? Let's make it open for map

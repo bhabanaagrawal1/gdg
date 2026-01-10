@@ -153,7 +153,7 @@ const Settings = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] px-4 py-10 flex justify-center">
       <div className="w-full max-w-4xl bg-white rounded-3xl shadow-sm p-6 sm:p-10">
-        <h1 className="text-3xl font-bold mb-8">
+        <h1 className="text-3xl font-bold mb-8 text-center lg:text-left">
           Settings <span className="text-[#a7c7e7]">Profile</span>
         </h1>
 
@@ -189,12 +189,12 @@ const Settings = () => {
             }`}
         />
 
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        {error && <p className="text-[#a7c7e7] text-sm mb-4">{error}</p>}
 
         {!editing ? (
           <button
             onClick={() => setEditing(true)}
-            className="px-6 py-3 rounded-xl bg-[#a7c7e7] text-white font-semibold"
+            className="w-full px-6 py-3 rounded-xl bg-[#a7c7e7] text-white font-semibold"
           >
             Edit Profile
           </button>
@@ -217,7 +217,7 @@ const Settings = () => {
         )}
 
         {/* CONTACTS */}
-        <h2 className="mt-10 mb-4 text-[#a7c7e7] font-semibold">
+        <h2 className="mt-5 mb-4 text-[#a7c7e7] font-semibold">
           Emergency Contacts (UIDs)
         </h2>
 
@@ -227,11 +227,11 @@ const Settings = () => {
             className="flex justify-between items-center bg-[#f2f6fb] px-4 py-3 rounded-xl mb-2"
           >
             <span className="font-mono text-sm">{uid}</span>
-            <button onClick={() => removeUID(uid)}>✕</button>
+            <button onClick={() => removeUID(uid)}><i class="ri-delete-bin-line"></i></button>
           </div>
         ))}
 
-        <div className="flex gap-3 mt-4">
+        <div className="flex flex-col lg:flex-row gap-3 mt-4">
           <input
             value={newUID}
             onChange={(e) => setNewUID(e.target.value)}
@@ -248,7 +248,7 @@ const Settings = () => {
 
         <button
           onClick={saveContacts}
-          className="mt-6 px-6 py-3 rounded-xl bg-[#a7c7e7] text-white font-semibold"
+          className="w-full mt-6 px-6 py-3 rounded-xl bg-[#a7c7e7] text-white font-semibold"
         >
           Save Emergency Contacts
         </button>

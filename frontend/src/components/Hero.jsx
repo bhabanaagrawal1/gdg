@@ -8,8 +8,8 @@ const Hero = () => {
       <div className='w-full h-auto lg:h-screen flex flex-col lg:flex-row justify-between items-center'>
         <div className='hide lg:flex lg:w-[50%] lg:h-full bg-[url("https://i.pinimg.com/736x/08/9d/1f/089d1fe2ce3fc04d2e9724b8a7d5f3a3.jpg")] bg-cover bg-no-repeat'></div>
         <div className='w-full lg:w-[50%] h-full bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] lg:bg-linear-to-br lg:from-white lg:to-white'>
-            <h1 className='pt-25 pb-5 text-center lg:text-right lg:p-25 lg:pb-15 text-4xl lg:text-[78px]/7 font-semibold ml-0 lg:-ml-[47%] whitespace-normal lg:whitespace-nowrap leading-10 px-7 lg:px-0  lg:leading-none'>Safety Wherever You Go</h1>
-            <p className='text-xl lg:text-4xl/12 text-center lg:text-right mr-0 lg:mr-9 font-light mb-3 lg:mb-7 px-7 lg:px-0'>You deserve to feel safe, Wherever life takes you.</p>
+            <h1 className='pt-25 pb-5 text-center lg:text-right lg:p-25 lg:pb-15 text-4xl lg:text-[78px]/7 font-semibold ml-0 lg:-ml-[47%] whitespace-normal lg:whitespace-nowrap leading-10 px-15 lg:px-0  lg:leading-none'>Safety Wherever <span className='text-[#a7c7e7] lg:text-black'>You Go</span></h1>
+            <p className='text-xl lg:text-4xl/12 text-center lg:text-right mr-0 lg:mr-9 font-light mb-3 lg:mb-7 px-13 lg:px-0'>You deserve to feel safe, Wherever life takes you.</p>
             <p className='text-[14px] lg:text-[18px] text-center lg:text-right mr-0 lg:mr-9 font-light lg:font-normal line-clamp-5 px-8 lg:px-0 lg:line-clamp-2 mb-7 lg:mb-10 text-gray-600 lg:text-black'>We quietly watch over your journey - giving you through safer paths, understanding your surroundings, and standing ready when you need help. Secure and supported.</p>
             <div className="flex flex-col items-center">
   <button onClick={()=>{

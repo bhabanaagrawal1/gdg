@@ -5,8 +5,7 @@ const API_URL = `${import.meta.env.VITE_BACKEND_URL}api/chat`; // adjust if need
 const Chatb = () => {
   const bottomRef = useRef(null);
 
-  /* ================= USER ID ================= */
-  /* ================= USER ID ================= */
+  
   const [userId] = useState(() => {
     let id = localStorage.getItem("mongo_id");
     if (!id) {

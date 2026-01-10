@@ -212,6 +212,8 @@ const Safety = () => {
     });
   }, []);
 
+  const progress = (safetyScore / 100) * CIRCUMFERENCE;
+
   return (
     <>
       <style>
@@ -245,7 +247,7 @@ const Safety = () => {
 
     {/* SAFETY SCORE RING */}
     <div className="relative flex justify-center items-center mb-6">
-      <svg width="140" height="140" className="lg:w-[160px] lg:h-[160px]">
+      <svg width="140" height="140" className="lg:w-40 lg:h-40">
         <circle
           cx="70"
           cy="70"

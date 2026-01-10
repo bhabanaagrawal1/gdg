@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -60,7 +60,7 @@ const PoliceSign = ({ onBack }) => {
             checkVerification(storedId);
         }
         setDeviceId(storedId);
-    }, []);
+    }, [navigate]);
 
     /* ---------------- FORM HOOKS ---------------- */
     // MOVED UP before conditional return
@@ -137,7 +137,9 @@ const PoliceSign = ({ onBack }) => {
                         vapidKey: "BFy93njkIu_dB4ocbim87cYBhvbyEHz_LLXtCRL0S5Oua92tTuhzka9S-6dy0Pdxbz2Kl6igP0tnoXkOT8X2zf0",
                     });
                 }
-            } catch (e) { }
+            } catch(error){ 
+                console.log(error)
+            }
 
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/police/verifyDevice`, {
                 method: "POST",

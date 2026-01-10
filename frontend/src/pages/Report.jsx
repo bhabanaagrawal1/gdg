@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Reports from '../components/Reports'
 import Navbar from '../components/Navbar'
 
 
-const Report = () => {
-  const { isAuth, authToken } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
+const Report = () => { 
   return (
     <div>
       <Navbar />
@@ -16,4 +12,4 @@ const Report = () => {
   )
 }
 
-export default Report
+export default Report;

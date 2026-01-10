@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Qsos from '../components/Qsos'
 
 const Sos = () => {
-  const { isAuth, authToken } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
 
   return (
     <div>
@@ -14,4 +10,4 @@ const Sos = () => {
   )
 }
 
-export default Sos
+export default Sos;

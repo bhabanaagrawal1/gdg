@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSOS } from "../context/SosContext";
+
 
 const Qsos = () => {
   const navigate = useNavigate();
-  const { startSOS } = useSOS();
+  
   const steps = [
     {
       id: 1,

@@ -85,8 +85,16 @@ export default function FriendMap() {
     }, []);
 
     return (
-        <div className="w-full h-screen flex justify-center">
-            <MapContainer
+        <>
+        <style>
+        {`
+      .leaflet-container {
+        z-index: 0;
+      }
+    `}
+      </style>
+        <div className="w-full h-full flex justify-center bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] pb-15">
+            <MapContainer id="map"
                 center={defaultCenter}
                 zoom={6}
                 className="w-[80%] h-[70vh] mt-10"
@@ -113,11 +121,12 @@ export default function FriendMap() {
                 {Object.entries(friends).map(([id, loc]) => (
                     <Marker key={id} position={[loc.latitude, loc.longitude]}>
                         <Popup>
-                            <strong>Name:</strong> {loc.name || "Friend"} <br />
+                            <strong>Name:</strong> {loc.name || "Friend"}<br />
                         </Popup>
                     </Marker>
                 ))}
             </MapContainer>
         </div>
+        </>
     );
 }

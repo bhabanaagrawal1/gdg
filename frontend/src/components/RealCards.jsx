@@ -53,8 +53,8 @@ const RealCards = () => {
   ];
 
   return (
-    <>
-      <h1 className="text-4xl sm:text-5xl lg:text-7xl text-center px-6 py-7 lg:py-14">
+   <>
+      <h1 id='one' className="text-4xl sm:text-5xl lg:text-7xl text-center px-6 py-7 lg:py-14">
         How We Keep <span className="text-[#A7C7E7]">You Safe</span>
       </h1>
 
@@ -67,7 +67,7 @@ const RealCards = () => {
         onMouseMove={(e) => handleMouseMove(e, index)}
         onMouseEnter={() => setHoveredIndex(index)}
         onMouseLeave={() => setHoveredIndex(null)}
-        className="relative w-full max-w-72.5 sm:max-w-sm h-80 sm:h-96 rounded-xl p-0.5 bg-white overflow-hidden shadow-lg cursor-pointer mx-auto"
+        className="relative w-full max-w-78 sm:max-w-sm h-80 sm:h-96 rounded-xl p-0.5 bg-white overflow-hidden shadow-lg cursor-pointer mx-auto"
       >
         {hoveredIndex === index && (
           <div

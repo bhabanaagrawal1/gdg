@@ -89,10 +89,18 @@ export default function PoliceLiveDashboard() {
     }, []);
 
     return (
+         <>
+        <style>
+        {`
+      .leaflet-container {
+        z-index: 0;
+      }
+    `}
+      </style>
         <div className="w-full h-screen flex flex-col">
-            <div className="bg-[#2c3e50] text-white p-4 shadow-md z-1">
+            <div className="text-center lg:text-left bg-[#97b8d8] text-white p-4 shadow-md z-1">
                 <h1 className="text-xl font-bold">Police Live Dashboard</h1>
-                <p className="text-xs text-gray-300">Station ID: {policeStationId || "Loading..."}</p>
+                <p className="text-xs text-white">Station ID: {policeStationId || "Loading..."}</p>
             </div>
             <MapContainer
                 center={defaultCenter}
@@ -106,19 +114,20 @@ export default function PoliceLiveDashboard() {
 
                 {mapCenter && <Recenter lat={mapCenter[0]} lng={mapCenter[1]} zoom={14} />}
 
-                {/* 🚨 Live Users */}
+                {/* Live Users */}
                 {Object.entries(users).map(([userId, loc]) => (
                     <Marker
                         key={userId}
                         position={[loc.latitude, loc.longitude]}
                     >
                         <Popup>
-                            <strong>Name:</strong> {loc.name || "Unknown"} <br />
+                            <strong>Name:</strong> {loc.name || "Unknown"}<br />
                             <strong>User ID:</strong> {userId}
                         </Popup>
                     </Marker>
                 ))}
             </MapContainer>
         </div>
+        </>
     );
 }

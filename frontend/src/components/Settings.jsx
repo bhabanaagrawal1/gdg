@@ -53,7 +53,7 @@ const Settings = () => {
       // 2. Fetch latest from Backend DB
       try {
         const token = await user.getIdToken();
-        const res = await fetch("http://localhost:5000/api/profile", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -97,7 +97,7 @@ const Settings = () => {
 
     setSaving(true);
 
-    await fetch("http://localhost:5000/api/user/profile", {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}api/user/profile`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +138,7 @@ const Settings = () => {
   };
 
   const saveContacts = async () => {
-    await fetch("http://localhost:5000/api/user/addfriends", {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}api/user/addfriends`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

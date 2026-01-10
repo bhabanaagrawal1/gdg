@@ -30,7 +30,7 @@ const PoliceSign = ({ onBack }) => {
     useEffect(() => {
         const checkVerification = async (id) => {
             try {
-                const res = await fetch("http://localhost:5000/api/police/checkDevice", {
+                const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/police/checkDevice`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ deviceId: id }),
@@ -100,7 +100,7 @@ const PoliceSign = ({ onBack }) => {
             // Controller requires it.
             if (!fcmToken) fcmToken = "dummy_token_permission_denied";
 
-            const res = await fetch("http://localhost:5000/api/police/policeDeviceReg", {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/police/policeDeviceReg`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -139,7 +139,7 @@ const PoliceSign = ({ onBack }) => {
                 }
             } catch (e) { }
 
-            const res = await fetch("http://localhost:5000/api/police/verifyDevice", {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/police/verifyDevice`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

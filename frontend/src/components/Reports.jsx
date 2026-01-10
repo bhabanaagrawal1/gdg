@@ -188,7 +188,7 @@ const Reports = () => {
       return;
     }
 
-    await fetch("http://localhost:5000/api/user/report", {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}api/user/report`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
         try {
           // Sync with backend to get Mongoose ID
-          const res = await fetch("http://localhost:5000/api/user/user", {
+          const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/user/user`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

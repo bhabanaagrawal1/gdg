@@ -139,7 +139,7 @@ const Safety = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/user/reports");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/user/reports`);
         const reports = await res.json();
 
         reports.forEach((report) => {
@@ -186,7 +186,7 @@ const Safety = () => {
         if (!user) return;
         const token = await user.getIdToken();
 
-        const res = await fetch(`http://localhost:5000/api/user/safeScore?lat=${latitude}&lng=${longitude}`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/user/safeScore?lat=${latitude}&lng=${longitude}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

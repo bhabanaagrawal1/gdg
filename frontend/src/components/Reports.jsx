@@ -75,7 +75,7 @@ const Reports = () => {
   const riskLevels = [
     { id: 1, description: "Minor concern", icon: "🟢" },
     { id: 2, description: "Moderate risk", icon: "🟡" },
-    { id: 3, description: "Immediate danger", icon: "🔴" },
+    { id: 3, description: "Danger zone", icon: "🔴" },
   ];
 
   /* ================= LOCATION ================= */
@@ -216,7 +216,7 @@ const Reports = () => {
   /* ================= UI ================= */
 
   return (
-    <>
+  <>
       <div className="min-h-screen bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] px-6 py-12">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
           {/* LEFT */}
@@ -256,11 +256,10 @@ const Reports = () => {
                   key={item.id}
                   onClick={() => setSelectedIncident(item.id)}
                   className={`cursor-pointer p-4 rounded-2xl transition-all duration-200
-                ${
-                  selectedIncident === item.id
-                    ? "bg-[#a7c7e7] text-white shadow-sm"
-                    : "bg-white hover:shadow-sm"
-                }`}
+                ${selectedIncident === item.id
+                      ? "bg-[#a7c7e7] text-white shadow-sm"
+                      : "bg-white hover:shadow-sm"
+                    }`}
                 >
                   <div className="flex flex-col items-center text-center gap-2">
                     <div className="w-12 h-12 rounded-xl bg-[#f2f6fb] flex items-center justify-center text-xl text-[#a7c7e7]">
@@ -318,11 +317,10 @@ const Reports = () => {
                   key={risk.id}
                   onClick={() => setSelectedRisk(risk.id)}
                   className={`cursor-pointer p-3 rounded-xl text-center transition
-                ${
-                  selectedRisk === risk.id
-                    ? "bg-[#a7c7e7] text-white"
-                    : "bg-[#f2f6fb]"
-                }`}
+                ${selectedRisk === risk.id
+                      ? "bg-[#a7c7e7] text-white"
+                      : "bg-[#f2f6fb]"
+                    }`}
                 >
                   <p className="text-lg">{risk.icon}</p>
                   <p className="text-xs font-semibold">{risk.description}</p>
@@ -363,7 +361,7 @@ const Reports = () => {
         shadow-2xl
         flex flex-col
         animate-slideUp
-        mt-15
+        mt-25
       "
             >
               {/* HEADER */}

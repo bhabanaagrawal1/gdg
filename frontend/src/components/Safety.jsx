@@ -7,6 +7,10 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
+const RADIUS = 60;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -42,6 +46,7 @@ const Safety = () => {
   const mapRef = useRef(null);
   const markersRef = useRef({});
   const lastEmitRef = useRef(0);
+  const navigate = useNavigate();
 
   // 🔁 MAP + LIVE LOCATION
   useEffect(() => {
@@ -92,7 +97,7 @@ const Safety = () => {
       (err) => console.error("Geolocation error:", err),
       {
         enableHighAccuracy: true,
-        timeout: 10000,
+        timeout: 5000,
         maximumAge: 0,
       }
     );
@@ -216,17 +221,152 @@ const Safety = () => {
       }
     `}
       </style>
-      <div className="w-full z-0 h-screen flex justify-center bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] relative">
-        <div id="map" className="w-[80%] h-[70vh] lg:h-[60vh] mt-10" />
+      <div className="w-full z-0 h-auto flex flex-col items-center justify-center bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] relative">
+        
+<div className="w-[90%] lg:w-[80%] h-auto lg:h-130 flex flex-col lg:flex-row justify-between items-center gap-8 mt-15">
 
-        {safetyScore && (
-          <div className="absolute top-12 right-[12%] bg-white p-3 rounded-xl shadow-lg z-10 border border-gray-100">
-            <p className="text-sm text-gray-500 font-medium">Safety Score</p>
-            <p className={`text-2xl font-bold ${Number(safetyScore) > 80 ? 'text-green-500' : Number(safetyScore) > 50 ? 'text-yellow-500' : 'text-red-500'}`}>
-              {safetyScore}/100
-            </p>
-          </div>
-        )}
+  {/* LEFT CARD */}
+  <div className="w-full lg:w-1/2 h-full bg-white rounded-3xl shadow-sm flex flex-col items-center px-4 lg:px-0">
+    
+    {/* Header */}
+    <div className="flex justify-center items-center">
+      <div id='three' className="px-3 py-1 text-base lg:text-xl rounded-3xl bg-[#a7c7e7] text-white inline-block mt-8 lg:mt-10 mb-5">
+        <i className="ri-sparkling-fill"></i>&nbsp;Real-time Analysis
+      </div>
+    </div>
+
+    <h1 className="text-center text-[#a7c7e7] text-3xl lg:text-4xl font-extrabold mb-3">
+      Your Safety Score
+    </h1>
+
+    <p className="text-gray-400 text-center text-sm lg:text-base line-clamp-2 px-4 lg:px-17 mb-6">
+      Real-time safety analysis in your current area. Stay informed, stay safe.
+    </p>
+
+    {/* SAFETY SCORE RING */}
+    <div className="relative flex justify-center items-center mb-6">
+      <svg width="140" height="140" className="lg:w-[160px] lg:h-[160px]">
+        <circle
+          cx="70"
+          cy="70"
+          r={RADIUS}
+          stroke="#E5E7EB"
+          strokeWidth="12"
+          fill="none"
+        />
+        <circle
+          cx="70"
+          cy="70"
+          r={RADIUS}
+          stroke="#a7c7e7"
+          strokeWidth="12"
+          fill="none"
+          strokeDasharray={CIRCUMFERENCE}
+          strokeDashoffset={CIRCUMFERENCE - progress}
+          strokeLinecap="round"
+          transform="rotate(-90 70 70)"
+          style={{ transition: "stroke-dashoffset 0.8s ease" }}
+        />
+      </svg>
+
+      <div className="absolute flex flex-col items-center">
+        <span className="text-3xl lg:text-4xl font-extrabold text-[#a7c7e7]">
+          {safetyScore}
+        </span>
+        <span className="text-xs lg:text-sm text-gray-400">out of 100</span>
+      </div>
+    </div>
+
+    {/* ACTION BUTTONS */}
+<div className="flex flex-col sm:flex-row gap-4 mt-6 mb-8">
+  
+  {/* SOS BUTTON */}
+  <button onClick={()=>navigate('/sos')}
+    className="px-10 py-3 bg-[#a7c7e7] text-white text-lg font-semibold rounded-2xl shadow-sm hover:opacity-70 transition"
+  >
+   <i class="ri-alarm-warning-line"></i> SOS
+  </button>
+
+  {/* ADD TRUSTED UID BUTTON */}
+  <button onClick={()=>navigate('/setting')}
+    className="px-8 py-3 border-2 border-[#a7c7e7] text-[#a7c7e7] text-lg font-semibold rounded-2xl hover:bg-[#a7c7e7] hover:text-white transition"
+  >
+    <i class="ri-add-line"></i> Add Trusted UID
+  </button>
+
+</div>
+
+  </div>
+
+  {/* RIGHT CARD */}
+  <div className="w-full lg:w-[45%] h-full bg-white rounded-3xl shadow-sm flex flex-col justify-center items-center py-4">
+
+    {/* ITEM */}
+    <div className="w-[90%] lg:w-[85%] h-auto lg:h-30 bg-blue-100 my-4 rounded-2xl flex items-center gap-4 px-5 py-4 lg:py-0">
+      <div className="text-[#a7c7e7] bg-white text-4xl lg:text-5xl rounded-2xl shadow-sm p-2">
+        <i className="ri-share-line"></i>
+      </div>
+      <div>
+        <h1 className="text-[18px] lg:text-[20px] text-white">
+          Share Your Location
+        </h1>
+        <p className="text-gray-400 text-[12px] lg:text-[13px]">
+          Let trusted contacts know where you are in real-time
+        </p>
+      </div>
+    </div>
+
+    {/* ITEM */}
+    <div className="w-[90%] lg:w-[85%] h-auto lg:h-30 bg-blue-100 my-4 rounded-2xl flex items-center gap-4 px-5 py-4 lg:py-0">
+      <div className="text-[#a7c7e7] bg-white text-4xl lg:text-5xl rounded-2xl shadow-sm p-2">
+        <i className="ri-chat-3-line"></i>
+      </div>
+      <div>
+        <h1 className="text-[18px] lg:text-[20px] text-white">
+          Stay Connected
+        </h1>
+        <p className="text-gray-400 text-[12px] lg:text-[13px]">
+          Keep your phone charged and check in regularly
+        </p>
+      </div>
+    </div>
+
+    {/* ITEM */}
+    <div className="w-[90%] lg:w-[85%] h-auto lg:h-30 bg-blue-100 my-4 rounded-2xl flex items-center gap-4 px-5 py-4 lg:py-0">
+      <div className="text-[#a7c7e7] bg-white text-4xl lg:text-5xl rounded-2xl shadow-sm p-2">
+        <i className="ri-map-pin-line"></i>
+      </div>
+      <div>
+        <h1 className="text-[18px] lg:text-[20px] text-white">
+          Know Safe Spots
+        </h1>
+        <p className="text-gray-400 text-[12px] lg:text-[13px]">
+          Identify nearby stores and public places you can go to
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div className="w-full h-auto  flex justify-center pb-10">
+          <div id="map" className="w-[80%] h-[70vh] lg:h-[60vh] mt-10" />
+          {safetyScore && (
+            <div className="absolute top-12 right-[12%] bg-white p-3 rounded-xl shadow-lg z-10 border border-gray-100">
+              <p className="text-sm text-gray-500 font-medium">Safety Score</p>
+              <p
+                className={`text-2xl font-bold ${
+                  Number(safetyScore) > 80
+                    ? "text-green-500"
+                    : Number(safetyScore) > 50
+                    ? "text-yellow-500"
+                    : "text-red-500"
+                }`}
+              >
+                {safetyScore}/100
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

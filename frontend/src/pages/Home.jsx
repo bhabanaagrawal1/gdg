@@ -8,21 +8,8 @@ import RealCards from '../components/RealCards'
 import Works from '../components/Works'
 import Self_defence from '../components/Self_defence'
 import Footer from '../components/Footer'
-import { useAuth } from "../context/Auth-context";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { isAuth, authToken } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isAuth) {
-      navigate("/");
-    }
-  }, [isAuth, navigate]);
-
-  if (!isAuth) return null;
-
   return (
     <div>
       <Navbar />

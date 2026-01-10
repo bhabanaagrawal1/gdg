@@ -1,8 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Cards = () => {
+  const navigate = useNavigate();
   return (
-    <div>
+   <div>
       <div className='w-full h-auto lg:h-screen flex flex-col lg:flex-row lg:justify-center items-center pb-5 lg:pb-20 border-b border-gray-300'>
         <div className='w-full lg:w-[45%] h-auto lg:h-[90%]'>
           <div className='w-full h-1/2 text-4xl lg:text-7xl text-center lg:text-right relative'>
@@ -13,7 +15,7 @@ const Cards = () => {
           </div>
           <div className='w-full h-1/2 flex justify-center items-center'>
           <p className='hidden lg:flex lg:text-[#A7C7E7] lg:w-[20%] lg:h-full lg:text-8xl lg:justify-center lg:items-center'>01</p>
-          <img src="https://i.pinimg.com/736x/3b/0a/19/3b0a19c08d26572cdbb8a07a629eb166.jpg" alt="" className='object-cover w-[80%] h-[60vh] lg:h-full rounded-3xl' />
+          <img src="https://i.pinimg.com/736x/3b/0a/19/3b0a19c08d26572cdbb8a07a629eb166.jpg" alt="" className='object-cover w-[80%] h-[50vh] lg:h-full rounded-3xl' />
           </div>
         </div>
         <div className='w-full lg:w-[45%] h-auto lg:h-[90%]'>
@@ -25,7 +27,7 @@ const Cards = () => {
           </div>
           <div className='w-full lg:w-[15%] lg:absolute lg:left-5 lg:bottom-0 lg:text-left text-[14px] leading-4 font-thin text-center mb-3 lg:mb-0 px-7 lg:px-0'>You just know something isn't right, and that awareness deserves to be respected.</div>
           <div className='flex justify-center mb-5 lg:mb-0'>
-            <button className='static lg:absolute lg:bottom-2 lg:right-32 text-[15px] border rounded-[10px] px-5 py-3 font-semibold hover:cursor-pointer hover:text-white hover:bg-[#A7C7E7]'>Learn how we help</button>
+            <button onClick={()=>navigate('/home#one')} className='static lg:absolute lg:bottom-2 lg:right-32 text-[15px] border rounded-[10px] px-5 py-3 font-semibold hover:cursor-pointer hover:text-white hover:bg-[#A7C7E7]'>Learn how we help</button>
           </div>
           </div>
         </div>

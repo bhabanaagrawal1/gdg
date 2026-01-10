@@ -358,7 +358,7 @@ const Safety = () => {
               <p
                 className={`text-2xl font-bold ${
                   Number(safetyScore) > 80
-                    ? "text-green-500"
+                    ? "text-[#a7c7e7]"
                     : Number(safetyScore) > 50
                     ? "text-yellow-500"
                     : "text-red-500"

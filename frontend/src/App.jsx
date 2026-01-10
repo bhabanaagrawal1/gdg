@@ -10,9 +10,12 @@ import SosRing from "./pages/SosRing"
 import Safetyscore from "./pages/Safetyscore"
 import Chatbot from "./pages/Chatbot"
 import FriendMapPage from "./pages/FriendMapPage"
+import ScrollToHashElement from "./components/ScrollToHashElement"
 
 const App = () => {
   return (
+    <>
+    <ScrollToHashElement/>
     <Routes>
       <Route path="/" element={<Signin />} />
       <Route path="/home" element={<Home />} />
@@ -26,6 +29,7 @@ const App = () => {
       <Route path="/friend-map" element={<FriendMapPage />} />
       <Route path="/police-dashboard" element={<PoliceLiveDashboard />} />
     </Routes>
+    </>
   )
 }
 

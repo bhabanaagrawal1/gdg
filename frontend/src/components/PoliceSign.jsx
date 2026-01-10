@@ -181,30 +181,37 @@ const PoliceSign = ({ onBack }) => {
     }
 
     return (
-        <div className="w-full bg-white flex justify-center items-center h-screen">
+       <div className="w-full bg-white flex justify-center items-center h-screen">
             <div className="flex flex-col md:flex-row w-full h-screen">
+
+                {/* Back Arrow */}
+      <button
+        onClick={onBack}
+        className="
+          absolute top-6 left-6 z-20
+          w-10 h-10 rounded-full
+          bg-[#b4d0eb] shadow
+          flex items-center justify-center
+          hover:opacity-80 text-white
+        "
+      >
+        <i className="ri-arrow-left-line text-xl"></i>
+      </button>
                 {/* LEFT IMAGE */}
                 <div className="w-full md:w-1/2">
                     <img
-                        src="https://i.pinimg.com/736x/75/fe/3d/75fe3d3f83e0878e500596e21b004f3e.jpg"
+                        src="https://i.pinimg.com/1200x/c8/d2/b1/c8d2b160041a089211064d5e047607f2.jpg"
                         alt="Visual"
-                        className="w-full h-full object-cover grayscale contrast-125"
+                        className="w-full h-full object-cover"
                     />
                 </div>
 
                 {/* RIGHT FORM */}
                 <div className="w-full md:w-1/2 flex justify-center items-center">
-                    <div className="w-full max-w-md px-8 flex flex-col gap-4 text-black">
+                    <div className="w-full max-w-md px-8 flex flex-col gap-4 text-black mb-10">
 
-                        <button
-                            onClick={onBack}
-                            className="self-start text-sm text-gray-500 hover:text-black mb-4 flex items-center gap-1"
-                        >
-                            ← Back
-                        </button>
-
-                        <h2 className="text-4xl text-center font-semibold mb-2">
-                            Police Login
+                        <h2 className="text-4xl text-center font-semibold mb-2 mt-5">
+                            Police <span className="text-[#a7c7e7]">Login</span>
                         </h2>
                         <p className="text-center text-gray-500 text-sm mb-6">
                             Access restricted to authorized personnel only.
@@ -219,13 +226,13 @@ const PoliceSign = ({ onBack }) => {
                                     className="rounded-xl px-4 py-3 border border-black/20 outline-none focus:border-[#A7C7E7]"
                                 />
                                 {errorsReg.emailId && (
-                                    <p className="text-[12px] text-red-500">{errorsReg.emailId.message}</p>
+                                    <p className="text-[12px] text-[#a7c7e7]">{errorsReg.emailId.message}</p>
                                 )}
 
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="rounded-xl bg-[#2C3E50] py-3 text-white font-medium hover:bg-[#34495E] transition"
+                                    className="rounded-xl bg-[#a7c7e7] py-3 text-white font-medium hover:opacity-70 transition"
                                 >
                                     {loading ? "Sending Code..." : "Send Verification Code"}
                                 </button>
@@ -245,13 +252,13 @@ const PoliceSign = ({ onBack }) => {
                                     maxLength={4}
                                 />
                                 {errorsVer.code && (
-                                    <p className="text-[12px] text-red-500">{errorsVer.code.message}</p>
+                                    <p className="text-[12px]  text-[#a7c7e7]">{errorsVer.code.message}</p>
                                 )}
 
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="rounded-xl bg-[#2C3E50] py-3 text-white font-medium hover:bg-[#34495E] transition"
+                                    className="rounded-xl bg-[#a7c7e7] py-3 text-white font-medium hover:opacity-70 transition"
                                 >
                                     {loading ? "Verifying..." : "Verify & Login"}
                                 </button>
@@ -266,7 +273,7 @@ const PoliceSign = ({ onBack }) => {
                             </form>
                         )}
 
-                        {errorMSG && <p className="text-red-500 text-center text-sm">{errorMSG}</p>}
+                        {errorMSG && <p className=" text-[#a7c7e7] text-center text-sm">{errorMSG}</p>}
 
                     </div>
                 </div>

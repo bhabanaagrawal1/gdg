@@ -247,7 +247,7 @@ const Safety = () => {
 
     {/* SAFETY SCORE RING */}
     <div className="relative flex justify-center items-center mb-6">
-      <svg width="140" height="140" className="lg:w-40 lg:h-40">
+      <svg width="140" height="140" >
         <circle
           cx="70"
           cy="70"
@@ -271,8 +271,8 @@ const Safety = () => {
         />
       </svg>
 
-      <div className="absolute flex flex-col items-center">
-        <span className="text-3xl lg:text-4xl font-extrabold text-[#a7c7e7]">
+      <div className="absolute flex flex-col items-center justify-center">
+        <span className="text-3xl font-extrabold text-[#a7c7e7]">
           {safetyScore}
         </span>
         <span className="text-xs lg:text-sm text-gray-400">out of 100</span>
@@ -353,7 +353,7 @@ const Safety = () => {
 <div className="w-full h-auto  flex justify-center pb-10">
           <div id="map" className="w-[80%] h-[70vh] lg:h-[60vh] mt-10" />
           {safetyScore && (
-            <div className="absolute top-12 right-[12%] bg-white p-3 rounded-xl shadow-lg z-10 border border-gray-100">
+            <div className="hidden lg:block absolute top-12 right-[12%] bg-white p-3 rounded-xl shadow-lg z-10 border border-gray-100">
               <p className="text-sm text-gray-500 font-medium">Safety Score</p>
               <p
                 className={`text-2xl font-bold ${

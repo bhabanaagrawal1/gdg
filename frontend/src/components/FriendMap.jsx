@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
     MapContainer,
     TileLayer,
@@ -30,26 +30,27 @@ const Recenter = ({ lat, lng }) => {
     const map = useMap();
     useEffect(() => {
         map.setView([lat, lng], 15);
-    }, [lat, lng, map]);
+    }, [lat, lng]);
     return null;
 };
 
 export default function FriendMap() {
     const [myLocation, setMyLocation] = useState(null);
-    const [friends, setFriends] = useState({});
+    const friendsMarkersRef = useRef({});
 
     // 🔐 REGISTER (same as HelpMate)
     useEffect(() => {
-        const register = async () => {
-            const auth = getAuth();
-            const user = auth.currentUser;
-            if (!user) return;
+        const auth = getAuth();
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                console.log("Socket Registering User:", user.uid);
+                const token = await user.getIdToken();
+                socket.connect();
+                socket.emit("register-user", { token });
+            }
+        });
 
-            const token = await user.getIdToken();
-            socket.emit("register-user", { token });
-        };
-
-        register();
+        return () => unsubscribe();
     }, []);
 
     // 📍 OWN LOCATION (view only)
@@ -68,33 +69,49 @@ export default function FriendMap() {
         );
     }, []);
 
-    // 👥 FRIEND LOCATIONS (ONLY event used in HelpMate)
-    useEffect(() => {
-        const handleFriendLocation = ({ userId, latitude, longitude, name }) => {
-            setFriends((prev) => ({
-                ...prev,
-                [userId]: { latitude, longitude, name },
-            }));
-        };
+    // 👥 FRIEND LOCATIONS (Optimized with direct Leaflet manipulation)
+    const FriendsLayer = () => {
+        const map = useMap();
 
-        socket.on("friend-live-location", handleFriendLocation);
+        useEffect(() => {
+            const handleFriendLocation = ({ userId, latitude, longitude, name }) => {
+                if (friendsMarkersRef.current[userId]) {
+                    // Update existing marker
+                    friendsMarkersRef.current[userId].setLatLng([latitude, longitude]);
+                } else {
+                    // Create new marker
+                    const marker = L.marker([latitude, longitude])
+                        .addTo(map)
+                        .bindPopup(`<strong>Name:</strong> ${name || "Friend"}`);
+                    friendsMarkersRef.current[userId] = marker;
+                }
+            };
 
-        return () => {
-            socket.off("friend-live-location", handleFriendLocation);
-        };
-    }, []);
+            const handleDisconnect = ({ userId }) => {
+                if (friendsMarkersRef.current[userId]) {
+                    friendsMarkersRef.current[userId].remove();
+                    delete friendsMarkersRef.current[userId];
+                }
+            };
+
+            socket.on("friend-live-location", handleFriendLocation);
+            socket.on("user-offline", handleDisconnect);
+
+            return () => {
+                socket.off("friend-live-location", handleFriendLocation);
+                socket.off("user-offline", handleDisconnect);
+                // Cleanup markers on unmount
+                Object.values(friendsMarkersRef.current).forEach((marker) => marker.remove());
+                friendsMarkersRef.current = {};
+            };
+        }, [map]);
+
+        return null;
+    };
 
     return (
-        <>
-        <style>
-        {`
-      .leaflet-container {
-        z-index: 0;
-      }
-    `}
-      </style>
-        <div className="w-full h-full flex justify-center bg-linear-to-br from-[#f4f8fc] to-[#eef3f9] pb-15">
-            <MapContainer id="map"
+        <div className="w-full h-screen flex justify-center">
+            <MapContainer
                 center={defaultCenter}
                 zoom={6}
                 className="w-[80%] h-[70vh] mt-10"
@@ -117,16 +134,9 @@ export default function FriendMap() {
                     </>
                 )}
 
-                {/* 👥 Friends */}
-                {Object.entries(friends).map(([id, loc]) => (
-                    <Marker key={id} position={[loc.latitude, loc.longitude]}>
-                        <Popup>
-                            <strong>Name:</strong> {loc.name || "Friend"}<br />
-                        </Popup>
-                    </Marker>
-                ))}
+                {/* 👥 Friends Optimized Layer */}
+                <FriendsLayer />
             </MapContainer>
         </div>
-        </>
     );
 }

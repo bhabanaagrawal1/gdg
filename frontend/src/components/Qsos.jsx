@@ -46,7 +46,7 @@ const Qsos = () => {
     >
       {/* Back Arrow */}
       <button
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
         className="
           absolute top-6 left-6 z-20
           w-10 h-10 rounded-full
@@ -160,12 +160,12 @@ const Qsos = () => {
             ))}
 
             <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start text-[14px] lg:text-[16px]">
-              <button className="flex items-center gap-2 py-3 w-full justify-center bg-gray-300 font-bold rounded-[10px] shadow hover:opacity-70">
+              <button onClick = {()=>navigate("/setting")} className="flex items-center gap-2 py-3 w-full justify-center bg-gray-300 font-bold rounded-[10px] shadow hover:opacity-70">
                 <i className="ri-phone-line"></i>
                 Edit Contact
               </button>
 
-              <button className="flex items-center gap-2 py-3 w-full justify-center bg-gray-300 font-bold rounded-[10px] shadow hover:opacity-70">
+              <button onClick = {()=>navigate("/safescore")} className="flex items-center gap-2 py-3 w-full justify-center bg-gray-300 font-bold rounded-[10px] shadow hover:opacity-70">
                 <i className="ri-shield-line"></i>
                 Safety Score
               </button>

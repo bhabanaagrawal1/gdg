@@ -57,7 +57,7 @@ const Active = () => {
       </button>
 
       <button
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
         className="w-[90%] max-w-sm sm:max-w-md lg:max-w-lg mt-3 py-3 bg-white/20 rounded-2xl text-base sm:text-lg text-white hover:opacity-80"
       >
         Return to Home

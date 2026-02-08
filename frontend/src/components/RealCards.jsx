@@ -27,10 +27,10 @@ const RealCards = () => {
       icon: "https://i.pinimg.com/736x/ee/85/bf/ee85bfcb87fe10a10f3341077a22a613.jpg",
     },
     {
-      title: "Safe Route Guidance",
+      title: "AI chatbot",
       description:
-        "Smart route suggestions that prioritize safer paths using historical data and community safety insights.",
-      icon: "https://i.pinimg.com/736x/f2/76/55/f27655cc3b62643a06b0caa08ff6e99b.jpg",
+        "An AI-powered chatbot that listens, guides, and helps you stay safe anytime, anywhere.",
+      icon: "https://i.pinimg.com/736x/6d/dc/3f/6ddc3f9a79c891e0efd6042624e08f51.jpg",
     },
     {
       title: "Community Reports",
@@ -45,10 +45,10 @@ const RealCards = () => {
       icon: "https://i.pinimg.com/736x/4a/56/e8/4a56e8884154f8f138742f360ac5f9b8.jpg",
     },
     {
-      title: "Pre-SOS Monitoring",
+      title: "Offline Safety Mode",
       description:
-        "When risk levels rise, the system silently prepares alerts and shares your location before danger escalates.",
-      icon: "https://i.pinimg.com/1200x/57/b1/3b/57b13b4c0389b030b0eec8b25b4c8489.jpg",
+        "Even without internet, your last known location is securely shared with your emergency contacts.",
+      icon: "https://i.pinimg.com/1200x/cb/07/2d/cb072d5032a9fcde2215653d720f2548.jpg",
     },
   ];
 
